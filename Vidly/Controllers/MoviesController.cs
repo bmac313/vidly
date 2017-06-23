@@ -13,12 +13,20 @@ namespace Vidly.Controllers
         public ActionResult Random()
         {
             var movie = new Movie() { Name = "Shrek"};
+            
             return View(movie);
         }
 
-        public ActionResult Edit(int movieId)
+        [Route("movies/released/{year}/{month:regex(\\{2}):range(1,12)}")]
+        public ActionResult ByReleaseDate(int year, int month)
         {
-            return Content("movieId=" + movieId);
+            string yearAbbr = year.ToString().Substring(2, 2);
+            return Content(month + "/" + yearAbbr);
+        }
+
+        public ActionResult Edit(int id)
+        {
+            return Content("id=" + id);
         }
 
         //Movies index page
