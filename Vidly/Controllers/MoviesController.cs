@@ -41,17 +41,20 @@ namespace Vidly.Controllers
             return Content("id=" + id);
         }
 
-        //Movies index page
-        //Question mark makes it a nullable integer
-        public ActionResult Index(int? pageIndex, String sortBy)
+        public ActionResult Index()
         {
-            if (!pageIndex.HasValue)
-                pageIndex = 1;
+            var movies = new List<Movie>
+            {
+                new Movie {Name = "Shrek" },
+                new Movie {Name = "Wall-E" }
+            };
 
-            if (String.IsNullOrWhiteSpace(sortBy))
-                sortBy = "Name";
+            var moviesViewModel = new MoviesViewModel
+            {
+                Movies = movies
+            };
 
-            return Content(String.Format("pageIndex={0}&sortBy={1}", pageIndex, sortBy));
+            return View(moviesViewModel);
         }
     }
 }
