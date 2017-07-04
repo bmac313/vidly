@@ -14,13 +14,15 @@ else
 {
     <table class="table table-bordered table-hover">
         <tr>
-            <th>Movie</th>
+            <th>Name</th>
+            <th>Discount Rate</th>
         </tr>
 
         @foreach (var customer in Model.Customers)
         {
             <tr>
                 <td>@customer.Name</td>
+                <td>@customer.MembershipType.DiscountRate%</td>
             </tr>
         }
     </table>
